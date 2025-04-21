@@ -1,0 +1,20 @@
+void main() {
+  int height = 3;
+  int width = 4;
+  String depthText = '2';
+  int depth = int.parse(depthText);
+
+  print('Box height: $height');
+  print('Box width: $width');
+  print('Box depth (after conversion): $depth');
+
+  int volume = height * width * depth;
+  print('Initial volume: $volume');
+
+  volume *= 2; // Double the volume
+  print('After *= 2, volume is: $volume');
+
+  int maxAllowedVolume = 50;
+  bool isWithinLimit = volume <= maxAllowedVolume;
+  print('Is volume <= max allowed ($maxAllowedVolume)? $isWithinLimit');
+}
