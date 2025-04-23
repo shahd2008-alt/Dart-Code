@@ -1,0 +1,20 @@
+import 'dart:io';
+
+void main() {
+  print('Enter a word');
+  String? word = stdin.readLineSync()!;
+  print('Enter a word:\n$word');
+
+  print('Enter your points:\n');
+  String? pointsText = stdin.readLineSync()!;
+  print('Enter your points:\n$pointsText');
+
+  int points = int.parse(pointsText);
+  points += 15;
+
+  print('Word in UPPERCASE: ${word.toUpperCase()}');
+  print('Word in lowercase: ${word.toLowerCase()}');
+  print('Length of the word: ${word.length}');
+  print('Is the word length >= 6? ${word.length >= 6}');
+  print('Final points after bonus: $points');
+}
