@@ -1,0 +1,39 @@
+import 'dart:io';
+
+void main() {
+  print('Enter your username (with extra spaces or digits):');
+  String usernameRaw = stdin.readLineSync()!;
+  print(usernameRaw);
+
+  print('Re-enter your username:');
+  String usernameConfirmRaw = stdin.readLineSync()!;
+  print(usernameConfirmRaw);
+
+  // Clean and compare usernames
+  String usernameTrimmed = usernameRaw.trim();
+  String usernameConfirmTrimmed = usernameConfirmRaw.trim();
+  String usernameCleaned = usernameTrimmed.replaceAll(RegExp(r'\d'), '');
+  bool isSameUsername = usernameTrimmed.compareTo(usernameConfirmTrimmed) == 0;
+
+  print('\n--- Username Info ---');
+  print('Are usernames the same after trimming? $isSameUsername');
+  print('Cleaned username (no digits): $usernameCleaned');
+  print('In UPPERCASE: ${usernameCleaned.toUpperCase()}');
+  print('In lowercase: ${usernameCleaned.toLowerCase()}');
+  print('Length of username: ${usernameCleaned.length}');
+
+  if (usernameCleaned.length >= 4) {
+    print('First 4 characters: ${usernameCleaned.substring(0, 4)}');
+  } else {
+    print('Username too short to show 4 characters.');
+  }
+
+  // Message section
+  print('\nEnter number of messages you sent today:');
+  String messageText = stdin.readLineSync()!;
+  int messageCount = int.parse(messageText);
+  messageCount += 10;
+
+  print('Final message count after bonus: $messageCount');
+  print('Did you send 50 or more messages? ${messageCount >= 50}');
+}
