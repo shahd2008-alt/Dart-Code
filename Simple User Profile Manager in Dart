@@ -1,0 +1,59 @@
+import 'dart:io';
+
+void main() {
+  // Step 1: Ask the user to enter their full name
+  print('Enter your full name (which may include extra spaces or numbers):');
+  String? usernameRaw = stdin.readLineSync()!;
+  print(usernameRaw);
+
+  // Step 2: Ask the user to re-enter the name to confirm it
+  print('Re-enter your name:');
+  String? usernameConfirmRaw = stdin.readLineSync()!;
+  print(usernameConfirmRaw);
+
+  // Step 3: Clean both names (trim spaces)
+  String usernameTrimmed = usernameRaw.trim();
+  String usernameConfirmTrimmed = usernameConfirmRaw.trim();
+
+  // Step 4: Remove digits from the first name
+  String usernameCleaned = usernameTrimmed.replaceAll(RegExp(r'\d'), '');
+
+  // Step 5: Compare the two trimmed names
+  bool isUsernameMatch = usernameTrimmed.compareTo(usernameConfirmTrimmed) == 0;
+
+  // Step 6: Display cleaned name details
+  print('Are names the same after trimming? $isUsernameMatch');
+  print('Cleaned Name: $usernameCleaned');
+  print('In UPPERCASE: ${usernameCleaned.toUpperCase()}');
+  print('In lowercase: ${usernameCleaned.toLowerCase()}');
+  print('Length of name: ${usernameCleaned.length}');
+
+  // Step 7: Show first 3 letters if name is long enough
+  if (usernameCleaned.length >= 3) {
+    print('First 3 letters: ${usernameCleaned.substring(0, 3)}');
+  } else {
+    print('The Name Is Too Short');
+  }
+
+  // Step 8: Ask the number of posts that user made
+  print('\nEnter the number of posts you made:');
+  String? postsText = stdin.readLineSync()!;
+  int postsCount = int.parse(postsText);
+  print(postsCount);
+
+  // Step 9: Add 5 bonus activities
+  postsCount += 5;
+  print('Total posts after bonus: $postsCount');
+
+  // Step 10: Award a Title Based on Activity
+  if (postsCount >= 100) {
+    print('Your title: Master Contributor');
+  } else if (postsCount >= 50) {
+    print('Your title: Active Member');
+  } else {
+    print('Your title: Newcomer');
+  }
+
+  // Step 11: Final thank you message
+  print('Thank you, $usernameCleaned, for being part of our community!');
+}
