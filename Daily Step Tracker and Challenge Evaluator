@@ -1,0 +1,53 @@
+import 'dart:io';
+
+void main() {
+  print('Enter your name:');
+  String? name = stdin.readLineSync();
+  print(name);
+
+  print('How many days do you want to track?');
+  int numDays = int.parse(stdin.readLineSync()!);
+  print(numDays);
+
+  int stepTotal = 0;
+
+  for (int day = 1; day <= numDays; day++) {
+    print('Enter steps for day $day:');
+    int daySteps = int.parse(stdin.readLineSync()!);
+    print(daySteps);
+
+    stepTotal += daySteps;
+  }
+
+  int averageSteps = stepTotal ~/ numDays;
+
+  print('\nTotal steps: $stepTotal');
+  print('Average steps per day: $averageSteps');
+
+  if (averageSteps >= 10000) {
+    print('Excellent, you hit your goal!');
+  } else if (averageSteps >= 5000) {
+    print('Not bad, but try to walk more.');
+  } else {
+    print('You need to move more!');
+  }
+
+  // Bonus steps section
+  print('\nDo you want to add bonus steps? (yes/no)');
+  String? response = stdin.readLineSync();
+  print(response);
+
+  while (response == 'yes') {
+    print('How many bonus steps?');
+    int bonusSteps = int.parse(stdin.readLineSync()!);
+    stepTotal += bonusSteps;
+
+    print('Updated total steps: $stepTotal');
+    print('Do you want to add more bonus steps? (yes/no)');
+    response = stdin.readLineSync();
+  }
+
+  // Final summary
+  print('\nFinal total steps (with bonuses): $stepTotal');
+  print('Thank you, $name, for using the step tracker!');
+}
