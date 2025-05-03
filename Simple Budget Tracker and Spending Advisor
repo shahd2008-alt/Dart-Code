@@ -1,0 +1,65 @@
+import 'dart:io';
+
+void main() {
+  // Step 1: Ask for user's name
+  print('Enter your name:');
+  String? name = stdin.readLineSync()!;
+  print(name);
+
+  // Step 2: Ask how many days to track
+  print('\nHow many days do you want to track?');
+  int numDays = int.parse(stdin.readLineSync()!);
+  print('$numDays\n');
+
+  // Step 3: Collect daily spending using for loop
+  int totalSpent = 0;
+
+  for (int day = 1; day <= numDays; day++) {
+    print('Enter spending for day $day:');
+    int dailyAmount = int.parse(stdin.readLineSync()!);
+    print(dailyAmount);
+
+    totalSpent += dailyAmount;
+  }
+
+  // Step 4: Calculate and display total and average
+  print('Total spent: $totalSpent');
+  int averageSpent = totalSpent ~/ numDays;
+  print('Average per day: $averageSpent');
+
+  // Step 5: Spending advice
+  if (averageSpent >= 100) {
+    print('You are overspending! Try to cut back.');
+  } else if (averageSpent >= 50) {
+    print('You are doing okay, but watch your spending.');
+  } else {
+    print('Great job! You are spending wisely.');
+  }
+
+  // Step 6: Ask about extra expenses using while loop
+  print('Do you want to add unexpected expenses? (yes/no)');
+  String? response = stdin.readLineSync()!;
+
+  while (response.toLowerCase() == 'yes') {
+    print('Enter amount:');
+    int extraExpense = int.parse(stdin.readLineSync()!);
+    print(extraExpense);
+
+    totalSpent += extraExpense;
+    print('Updated total spending: $totalSpent');
+
+    print('Do you want to add more unexpected expenses? (yes/no)');
+    response = stdin.readLineSync()!;
+  }
+
+  // Step 7: Simulate final review using do while loop
+  int reviewDay = 1;
+  do {
+    print('Reviewing day $reviewDay...');
+    reviewDay++;
+  } while (reviewDay <= numDays);
+
+  // Final output
+  print('Final spending: $totalSpent');
+  print('Thank you, $name, for using Budget Tracker!');
+}
