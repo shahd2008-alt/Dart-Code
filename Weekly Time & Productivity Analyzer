@@ -1,0 +1,78 @@
+import 'dart:io';
+
+void main() {
+  // Step 1: Get name
+  print('Enter your name:');
+  String? name = stdin.readLineSync()!;
+  print(name);
+
+  // Step 2: Get number of working days
+  print('\nHow many days did you work this week?');
+  int numDays = int.parse(stdin.readLineSync()!);
+  print('$numDays\n');
+
+  int total_hours = 0;
+  int total_productivity = 0;
+
+  // Step 3: Collect hours and productivity using a for loop
+  for (int day = 1; day <= numDays; day++) {
+    print('Day $day - Hours worked:');
+    int hours = int.parse(stdin.readLineSync()!);
+    print(hours);
+
+    print('Day $day - Productivity (1-10):');
+    int productivity = int.parse(stdin.readLineSync()!);
+    print(productivity);
+    print('\n');
+
+    total_hours += hours;
+    total_productivity += productivity;
+  }
+
+  // Step 4: Calculate averages
+  int average_hours = total_hours ~/ numDays;
+  int average_productivity = total_productivity ~/ numDays;
+
+  print('\nTotal hours: $total_hours');
+  print('Average hours: $average_hours');
+  print('Total productivity: $total_productivity');
+  print('Average productivity: $average_productivity\n');
+
+  // Step 5: Give feedback
+  if (average_hours >= 8 && average_productivity >= 7) {
+    print('You are highly productive and working smart.');
+  } else if (average_hours >= 8 && average_productivity < 7) {
+    print('You are working a lot — consider taking breaks.');
+  } else if (average_hours < 8 && average_productivity >= 7) {
+    print('Efficient! Keep it up.');
+  } else {
+    print('Try adjusting your work rhythm for better results.');
+  }
+
+  // Step 6: Add missed hours using while loop
+  print('\nDo you want to add missed hours? (yes/no)');
+  String? response = stdin.readLineSync()!;
+
+  while (response.toLowerCase() == 'yes') {
+    print('Enter missed hours:');
+    int missed_hours = int.parse(stdin.readLineSync()!);
+    print(missed_hours);
+
+    total_hours += missed_hours;
+
+    print('Do you want to add more missed hours? (yes/no)');
+    response = stdin.readLineSync()!;
+  }
+
+  // Step 7: Simulate review using do while loop
+  print('\n');
+  int reviewDay = 1;
+  do {
+    print('Reviewing day $reviewDay');
+    reviewDay++;
+  } while (reviewDay <= numDays);
+
+  // Final summary
+  print('\nFinal total hours: $total_hours');
+  print('Thank you for using Productivity Analyzer, $name!');
+}
