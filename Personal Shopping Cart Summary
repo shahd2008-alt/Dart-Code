@@ -1,0 +1,83 @@
+import 'dart:io';
+
+void main() {
+  print('Welcome to your shopping cart!');
+
+  // Step 1: Ask for user's name
+  print('Enter your name:');
+  String? name = stdin.readLineSync()!;
+  print(name);
+
+  // Step 2: Ask how many items to add
+  print('\nHow many items do you want to add?');
+  int numItems = int.parse(stdin.readLineSync()!);
+  print(numItems);
+  print('\n');
+
+  List<String> listItem = [];
+
+  // Step 3: Use a for loop to collect items
+  for (int item = 1; item <= numItems; item++) {
+    print('Enter item $item:');
+    String items = stdin.readLineSync()!;
+    print(items);
+    listItem.add(items);
+  }
+
+  print('\n');
+
+  // Step 4: Use list methods
+  print('First item: ${listItem.first}');
+  print('Last item: ${listItem.last}');
+
+  if (listItem.isNotEmpty) {
+    print('Your cart is not empty.');
+  } else {
+    print('Your cart is empty.');
+  }
+
+  print('You have ${listItem.length} items.\n');
+
+  // Step 5: Show items in reverse
+  print('Items in reverse:');
+  for (var item in listItem.reversed) {
+    print(item);
+  }
+
+  // Step 6: Search for an item
+  print('\nSearch for an item:');
+  String search = stdin.readLineSync()!;
+  print(search);
+
+  int position = listItem.indexOf(search);
+
+  if (position != -1) {
+    print('Found at index: $position');
+  } else {
+    print('Item was not found in your list.');
+  }
+
+  // Step 7: Add more items (while loop)
+  print('\nDo you want to add more items? (yes/no)');
+  String? response = stdin.readLineSync();
+  print(response);
+
+  while (response!.toLowerCase() == 'yes') {
+    print('Enter item:');
+    String newItem = stdin.readLineSync()!;
+    print(newItem);
+
+    listItem.add(newItem);
+
+    print('Do you want to add more items? (yes/no)');
+    response = stdin.readLineSync();
+  }
+
+  // Final cart summary
+  print('\nHere is your final cart:');
+  for (var finalItem in listItem) {
+    print('- $finalItem');
+  }
+
+  print('\nThanks for shopping with us, $name!');
+}
